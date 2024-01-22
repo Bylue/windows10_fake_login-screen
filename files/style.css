@@ -1,0 +1,229 @@
+* {
+    margin: 0;
+    padding: 0;
+}
+
+@import url('https://fonts.googleapis.com/css2?family=Raleway:wght@200&display=swap');
+
+::-webkit-scrollbar {
+    display: none;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+/* For Internet Explorer and Edge */
+body {
+    -ms-overflow-style: none;
+    overflow-x: hidden;
+    overflow: hidden;
+    cursor: default !important
+}
+
+/* For Firefox */
+html {
+    scrollbar-width: none;
+}
+
+body {
+    height: 100%;
+    background-color: black;
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-attachment: fixed;
+    color: white;
+    font-family: 'Segoe UI Light', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    font-weight: 300;
+    overflow: hidden !important;
+}
+
+.container {
+    height: 100vh;
+    width: 100%;
+}
+
+.main {
+    text-align: left;
+    bottom: 10px;
+    position: absolute;
+    left: 30px;
+    bottom: 60px;
+    width: 100%;
+}
+
+.main h1 {
+    font-size: 120px;
+    -webkit-user-select: none; /* Safari */
+    -moz-user-select: none; /* Firefox */
+    -ms-user-select: none; /* Internet Explorer/Edge */
+    user-select: none;
+}
+
+.main h2 {
+    font-size: 30px;
+    -webkit-user-select: none; /* Safari */
+    -moz-user-select: none; /* Firefox */
+    -ms-user-select: none; /* Internet Explorer/Edge */
+    user-select: none;
+}
+
+#login {
+    transition: all 0.5s ease;
+}
+
+.login {
+    height: 100%;
+    backdrop-filter: blur(15px);
+    text-align: center;
+}
+
+.login #form {
+    transition: all 0.6 ease;
+    position: relative;
+}
+
+.login .form {
+    display: block !important;
+}
+
+.login form {
+    width: 350px;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, 20%);
+}
+
+.login h3 {
+    font-size: 45px;
+    margin-bottom: 20px;
+    -webkit-user-select: none; /* Safari */
+    -moz-user-select: none; /* Firefox */
+    -ms-user-select: none; /* Internet Explorer/Edge */
+    user-select: none;
+}
+
+.login h5 {
+    margin-top: 20px;
+}
+
+.login input {
+    padding: 3px;
+    margin-bottom: 10px;
+}
+
+.login .styledInput {
+    background-color: white; /* White background */
+    color: black;           /* Black text color */
+    border: none;           /* No border */
+    outline: none;          /* Removes the default focus highlight */
+    padding: 10px;          /* Optional: Adds some padding inside the input */
+    transition: background-color 0.3s, color 0.3s; /* Smooth transition for color and background */
+    width: 250px;
+    height: 8px;
+    border: 1.5px solid white;
+}
+
+.login .styledInput:not(:focus) {
+    border: 1.5px solid white;
+    background-color: rgba(0, 0, 0, 0.734); /* Black background when not focused */
+    color: white;
+}
+
+.login h4 {
+    font-size: 12px;
+}
+
+.login .icons {
+    display: flex;
+    text-align: center;
+    align-items: center;
+    right: 10px;
+    bottom: 10px;
+    position: fixed; /* or absolute */
+    margin: 15px;
+}
+
+.login .icons ion-icon {
+    margin-left: 20px;
+    font-size: 24px;
+}
+
+#h6 {
+    text-align: center;
+    display: flex;
+    width: 100px;
+}
+
+.loader {
+    padding-top: 100px;
+    width: 50px;
+}
+.loader .circle {
+    position: absolute;
+    width: 48px;
+    height: 48px;
+    opacity: 0;
+    transform: rotate(225deg);
+    animation-iteration-count: infinite;
+    animation-name: orbit;
+    animation-duration: 5.5s;
+}
+.loader .circle:after {
+    content: '';
+    position: absolute;
+    width: 6px;
+    height: 6px;
+    border-radius: 5px;
+    background: #fff;
+    /* Pick a color */
+}
+.loader .circle:nth-child(2) {
+    animation-delay: 240ms;
+}
+.loader .circle:nth-child(3) {
+    animation-delay: 480ms;
+}
+.loader .circle:nth-child(4) {
+    animation-delay: 720ms;
+}
+.loader .circle:nth-child(5) {
+    animation-delay: 960ms;
+}
+@keyframes orbit {
+  0% {
+    transform: rotate(225deg);
+    opacity: 1;
+    animation-timing-function: ease-out;
+  }
+  7% {
+    transform: rotate(345deg);
+    animation-timing-function: linear;
+  }
+  30% {
+    transform: rotate(455deg);
+    animation-timing-function: ease-in-out;
+  }
+  39% {
+    transform: rotate(690deg);
+    animation-timing-function: linear;
+  }
+  70% {
+    transform: rotate(815deg);
+    opacity: 1;
+    animation-timing-function: ease-out;
+  }
+  75% {
+    transform: rotate(945deg);
+    animation-timing-function: ease-out;
+  }
+  76% {
+    transform: rotate(945deg);
+    opacity: 0;
+  }
+  100% {
+    transform: rotate(945deg);
+    opacity: 0;
+  }
+}
