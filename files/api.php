@@ -4,7 +4,7 @@ ini_set('display_errors', 1);
 error_reporting(E_ALL);
 
 
-$webhookUrl = "https://discord.com/api/webhooks/1198946530212724787/WWMjz90fK7auzp4RmebKVrbl6PYXdAbXrzWzjlZHT0keyM07brbUIE5a-2dIn1YS8plk"; // Replace with your Discord webhook URL
+$webhookUrl = ""; // Replace with your Discord webhook URL
 
 // Check if there are any GET parameters
 if (!empty($_GET)) {
